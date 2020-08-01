@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let uuid = require('node-uuid')     // 随机id
-const md5 = require('../../utils/md5')
+const { md5 } = require('../../utils/md5')
 const { body, validationResult } = require('express-validator');   // 传入数据字段验证
 const jwt = require('jsonwebtoken');   // 生成和解析token
 const boom = require('boom');           // 返回错误信息
@@ -15,6 +15,7 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/', async function (req, res, next) {
+    console.log(req.body, 'req.body')
     const err = validationResult(req);
     // 检验字段是否都有值
     if (!err.isEmpty()) {
@@ -33,6 +34,7 @@ router.post('/', async function (req, res, next) {
             })
         } else {
             // 去注册
+            confirm = md5(confirm);
             password = md5(password);
             sqlStr = `insert into user (user_id,mail,password,confirm,role,mobile,caeate_time) values (?,?,?,?,?,?,?)`;
             let user_id = uuid.v1();
@@ -47,7 +49,7 @@ router.post('/', async function (req, res, next) {
             } else {
                 const sqlStr = `select * from user where mail='${mail}' and password='${password}'`;
                 result = await sqlQuery(sqlStr)
-
+                // 生成token
                 const token = jwt.sign({ mail }, PRIVATE_KEY, { expiresIn: JWT_EXPIRED })
                 let userData = {
                     user_id: result[0].user_id,
