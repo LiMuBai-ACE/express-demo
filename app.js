@@ -3,16 +3,14 @@ var router = express.Router();
 let path = require('path');
 let cors = require('cors');
 let logger = require('morgan');   // 日志
-// 引入session模块
-let session = require('express-session');
 // 引入上传模块
 let multer = require('multer');
 // 配置上传对象
 let upload = multer({ dest: './public/upload' })
 // 引入jwt认证函数
 const { jwtAuth, decode } = require('./utils/user-jwt');
-// 注入认证模块
-router.use(jwtAuth);
+
+
 
 
 
@@ -30,14 +28,9 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// session 配置
-app.use(session({
-    secret: 'javascript',   // session密钥
-    resave: true,          // 强制保存session
-    saveUninitialized: true  // 是否保存初始化session
-}))
 
-
+// 注入认证模块
+app.use(jwtAuth);
 
 
 
@@ -65,6 +58,7 @@ app.use('/login', loginRouter);
 
 // 自定义统一异常处理中间件，需要放在代码最后
 app.use(function (err, req, res, next) {
+    console.log(err,'err')
     // 自定义用户认证失败的错误返回
     if (err && err.name === 'UnauthorizedError') {
         const { status = 401, message } = err;
