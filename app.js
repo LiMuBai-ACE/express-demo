@@ -39,7 +39,7 @@ app.use(express.json());      // 解析json数据格式
 app.use(express.urlencoded({ extended: true }));   // 解析form表单提交的数据
 
 app.use(cors({
-    origin: ['http://localhost:8000'],
+    origin: ['http://localhost:3033', 'http://122.51.84.54:4000'],
     credentials: true,
     allowedHeaders: 'Content-Type,Authorization',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
@@ -58,7 +58,7 @@ app.use('/login', loginRouter);
 
 // 自定义统一异常处理中间件，需要放在代码最后
 app.use(function (err, req, res, next) {
-    console.log(err,'err')
+    console.log(err, 'err')
     // 自定义用户认证失败的错误返回
     if (err && err.name === 'UnauthorizedError') {
         const { status = 401, message } = err;
