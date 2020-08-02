@@ -1,8 +1,4 @@
-/**
- * 描述: 封装md5方法
- * 作者: Jack Chen
- * 日期: 2020-06-20
-*/
+
 
 const crypto = require('crypto'); // 引入crypto加密模块
 const bcrypt = require('bcrypt'); // 引入bcrypt加密模块
@@ -13,7 +9,11 @@ function md5(s) {
 function md5s(s) {
   return bcrypt.hashSync(s, 10);
 }
+// 
+function md5sProven (s,w) {
+  return bcrypt.compareSync(s, w);
+}
 
 
 
-module.exports = { md5s, md5 };
+module.exports = { md5s, md5,md5sProven };
