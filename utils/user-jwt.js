@@ -7,6 +7,7 @@
 const jwt = require('jsonwebtoken'); // 引入验证jsonwebtoken模块
 const expressJwt = require('express-jwt'); // 引入express-jwt模块
 const { PRIVATE_KEY } = require('./constant'); // 引入自定义的jwt密钥
+const qs = require('qs')
 
 // 验证token是否过期
 const jwtAuth = expressJwt({
@@ -16,10 +17,12 @@ const jwtAuth = expressJwt({
   credentialsRequired: true,
   // 自定义获取token的函数
   getToken: (req) => {
-    if (req.headers.authorization) {
-      return req.headers.authorization
-    } else if (req.query && req.query.token) {
-      return req.query.token
+    // 获取cookie对象
+    const cookies = qs.parse(req.headers.cookie)
+    // 验证token是否可以解析
+    if (decode(cookies.token).email) {
+      // 返回token 校验成功
+      return cookies.token
     }
   },
   algorithms: ['HS256']
@@ -32,9 +35,10 @@ const jwtAuth = expressJwt({
   ]
 })
 
+
+
 // jwt-token解析
-function decode(req) {
-  const token = req.get('Authorization')
+function decode(token) {
   return jwt.verify(token, PRIVATE_KEY);
 }
 
