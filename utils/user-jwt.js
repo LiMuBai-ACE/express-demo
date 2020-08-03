@@ -13,19 +13,7 @@ const qs = require('qs')
 const jwtAuth = expressJwt({
   // 设置密钥
   secret: PRIVATE_KEY,
-  // 设置为true表示校验，false表示不校验
-  credentialsRequired: true,
-  // 自定义获取token的函数
-  getToken: (req) => {
-    // 获取cookie对象
-    const cookies = qs.parse(req.headers.cookie)
-    // 验证token是否可以解析
-    if (decode(cookies.token).email) {
-      // 返回token 校验成功
-      return cookies.token
-    }
-  },
-  algorithms: ['HS256']
+  // algorithms: ['RS256']
   // 设置jwt认证白名单，比如/api/login登录接口不需要拦截
 }).unless({
   path: [

@@ -28,8 +28,8 @@ router.post('/', async function (req, res, next) {
             // 验证密码是否正确
             if (md5sProven(password, result[0].password)) {
                 const token = jwt.sign({ email }, PRIVATE_KEY)
-                // 服务端设置token
-                res.cookie('token', token, { maxAge: JWT_EXPIRED, httpOnly: true })
+                // 服务端设置token  服务端无法设置cookie
+                // res.cookie('token', token, { maxAge: JWT_EXPIRED, httpOnly: true })
                 let userData = {
                     user_id: result[0].user_id,
                     avatar: result[0].avatar,
@@ -41,8 +41,8 @@ router.post('/', async function (req, res, next) {
                 res.json({
                     code: 200,
                     msg: '登录成功',
-                    // token,
-                    data: userData
+                    data: userData,
+                    token
                 })
             } else {
                 res.json({

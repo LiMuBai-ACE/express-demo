@@ -7,12 +7,9 @@ let logger = require('morgan');   // 日志
 let multer = require('multer');
 // 配置上传对象
 let upload = multer({ dest: './public/upload' })
+const passport = require("passport"); //引入passport插件*
 // 引入jwt认证函数
 const { jwtAuth, decode } = require('./utils/user-jwt');
-
-
-
-
 
 
 
@@ -29,8 +26,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-// 注入认证模块
-app.use(jwtAuth);
+//passport初始化
+app.use(passport.initialize());
 
 
 
