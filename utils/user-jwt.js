@@ -19,6 +19,7 @@ const jwtAuth = expressJwt({
   getToken: (req) => {
     // 获取cookie对象
     const cookies = qs.parse(req.headers.cookie)
+    console.log(cookies)
     // 验证token是否可以解析
     if (decode(cookies.token).email) {
       // 返回token 校验成功

@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 
 router.post('/', async function (req, res, next) {
+    console.log(req)
     res.cookie('token', '', { maxAge: 0, httpOnly: true })
     res.json({
         code: 200,

@@ -38,12 +38,17 @@ app.use(logger('dev'));      // 日志   后期可以用来当作操作记录
 app.use(express.json());      // 解析json数据格式
 app.use(express.urlencoded({ extended: true }));   // 解析form表单提交的数据
 
-app.use(cors({
-    origin: ['http://localhost:3033', 'http://122.51.84.54:4000'],
-    credentials: true,
-    allowedHeaders: 'Content-Type,Authorization',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
-})); // 注入cors模块解决跨域
+app.use(cors(
+    {
+        origin: [
+            'http://localhost:8000',
+            'http://122.51.84.54:4000'
+        ],
+        credentials: true,
+        // allowedHeaders: 'Content-Type,Authorization',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+    }
+)); // 注入cors模块解决跨域
 
 
 // 这是前台路由
