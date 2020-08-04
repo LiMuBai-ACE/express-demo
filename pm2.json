@@ -1,9 +1,0 @@
-{
-    "apps":[
-        {
-            "name": "website", // 项目名称
-            "script": "bin/www", // 入口文件
-            
-        }
-    ]
-}

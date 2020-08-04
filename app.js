@@ -7,10 +7,6 @@ let logger = require('morgan');   // 日志
 let multer = require('multer');
 // 配置上传对象
 let upload = multer({ dest: './public/upload' })
-const passport = require("passport"); //引入passport插件*
-// 引入jwt认证函数
-const { jwtAuth, decode } = require('./utils/user-jwt');
-
 
 
 // 引入路由模块
@@ -27,7 +23,7 @@ app.set('view engine', 'ejs');
 
 
 //passport初始化
-app.use(passport.initialize());
+// app.use(jwtAuth);
 
 
 
@@ -58,8 +54,14 @@ app.use('/user', userRouter);
 app.use('/login', loginRouter);
 
 
+
+
 // 自定义统一异常处理中间件，需要放在代码最后
 app.use(function (err, req, res, next) {
+
+    // if (req) {
+
+    // }
     console.log(err, 'err')
     // 自定义用户认证失败的错误返回
     if (err && err.name === 'UnauthorizedError') {

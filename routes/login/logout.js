@@ -1,8 +1,8 @@
-let express = require('express');
-let router = express.Router();
+const express = require('express');
+const router = express.Router();
+const auth = require('../../utils/auth')
 
-router.get('/', async function (req, res, next) {
-    // res.cookie('token', '', { maxAge: 0, httpOnly: true })
+router.get('/', auth.auth, async function (req, res, next) {
     res.json({
         code: 200,
         msg: '退出成功!'
