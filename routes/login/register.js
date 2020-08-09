@@ -32,14 +32,14 @@ router.post('/', async function (req, res, next) {
             confirm = md5s(confirm);
             // 默认的用户权限
             role ? role : 'user';
-            sqlStr = `insert into user (user_id,email,avatar,password,confirm,role,mobile,caeate_time) values (?,?,?,?,?,?,?,?)`;
+            sqlStr = `insert into user (user_id,email,avatar,password,confirm,role,mobile,create_time) values (?,?,?,?,?,?,?,?)`;
             // 生成用户id
             let user_id = uuid.v1();
             // 增加默认头像
             const avatar = 'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3256100974,305075936&fm=26&gp=0.jpg';
             // 创建时间
-            let caeate_time = new Date()
-            result = await sqlQuery(sqlStr, [user_id, email, avatar, password, confirm, role, mobile, caeate_time])
+            let create_time = new Date()
+            result = await sqlQuery(sqlStr, [user_id, email, avatar, password, confirm, role, mobile, create_time])
             if (!result || result.length === 0) {
                 res.json({
                     code: 0,

@@ -58,7 +58,7 @@ app.use('/login', loginRouter);
 
 // 自定义统一异常处理中间件，需要放在代码最后
 app.use(function (err, req, res, next) {
-
+    console.log(req, '====>')
     // if (req) {
 
     // }

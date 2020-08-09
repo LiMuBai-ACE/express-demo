@@ -36,7 +36,7 @@ router.post('/', async function (req, res, next) {
                     email: result[0].email,
                     mobile: result[0].mobile,
                     role: result[0].role,
-                    caeate_time: result[0].caeate_time,
+                    create_time: result[0].create_time,
                 };
                 res.json({
                     code: 200,

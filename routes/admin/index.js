@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 // 引入路由模块
-var newsRouter = require('./news');
+var articlesRouter = require('./articles');
 var studentsRouter = require('./students');
 var teachersRouter = require('./teachers');
 var usersRouter = require('./users');
@@ -21,7 +21,7 @@ router.use('/users', usersRouter);
 
 
 // 新闻管理
-router.use('/news', newsRouter);
+router.use('/articles', articlesRouter);
 
 
 // 学生管理
