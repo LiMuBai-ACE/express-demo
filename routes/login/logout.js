@@ -5,7 +5,7 @@ const auth = require('../../utils/auth')
 router.get('/', async function (req, res, next) {
     res.json({
         code: 200,
-        msg: '退出成功!'
+        msg: '已退出,请重新登录!'
     })
 });
 
