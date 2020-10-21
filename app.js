@@ -35,10 +35,11 @@ app.use(cors(
     {
         origin: [
             'http://localhost:8000',
+            'http://localhost:5000',
             'http://122.51.84.54:4000'
         ],
         credentials: true,
-        // allowedHeaders: 'Content-Type,Authorization',
+        allowedHeaders: 'Content-Type,Authorization',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
     }
 )); // 注入cors模块解决跨域
