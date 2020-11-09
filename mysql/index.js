@@ -6,6 +6,9 @@
     password 密码
     database   数据库名
     connectTimeout: 连接超时
+
+
+    
 */
 const mysql = {
     host: "localhost",
