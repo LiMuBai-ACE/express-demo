@@ -8,10 +8,10 @@
     connectTimeout: 连接超时
 */
 const mysql = {
-    host: "localhost",
+    host: "106.15.63.211",
     port: "3306",//可选，默认式3306
     user: "root",
-    password: "123456",
+    password: "Li-123456",
     database: "blog",
     connectTimeout: 5000
 }
