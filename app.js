@@ -35,8 +35,8 @@ app.use(cors(
     {
         origin: [
             'http://localhost:8000',
-            'http://localhost:5000',
-            'http://122.51.84.54:4000'
+            'http://106.15.63.211:4000',
+            'http://106.15.63.211:8080',
         ],
         credentials: true,
         allowedHeaders: 'Content-Type,Authorization',
