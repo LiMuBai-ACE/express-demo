@@ -24,7 +24,6 @@ router.post('/detail', async function (req, res, next) {
 // 创建新文章
 router.post('/', async function (req, res, next) {
     const { content, user_id, title, profile } = req.body
-    console.log(content)
     if (!content) return res.send({ code: 0, msg: '内容不能为空' })
     if (!user_id) return res.send({ code: 0, msg: 'user_id不能为空' })
     if (!title) return res.send({ code: 0, msg: '标题不能为空' })
